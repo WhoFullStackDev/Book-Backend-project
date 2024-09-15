@@ -249,7 +249,7 @@
       const getBooks = async () => {
         let content = "";
         try {
-          const response = await fetch("http://localhost:4000/book/books");
+          const response = await fetch("/book/books");
           if (!response.ok) {
             throw new Error("Response status: " + response.status);
           }
