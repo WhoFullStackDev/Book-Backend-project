@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <title>Document</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+
+      .container {
+        display: flex;
+        align-content: center;
+        justify-content: center;
+        margin-top: 20px;
+      }
+
+      .hole {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .hole h1 {
+        font-family: "Poppins", sans-serif;
+        font-weight: 700;
+        font-style: normal;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 10px;
+        background-color: #f0e9e9;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+      }
+
+      input {
+        width: 270px;
+        padding: 8px;
+        border-radius: 5px;
+        border: none;
+      }
+
+      .btn {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      button[type="reset"] {
+        background-color: red;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+      }
+
+      button[type="submit"] {
+        background-color: black;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+      }
+
+      #bookContainer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+        overflow: scroll;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 40%;
+        border-radius: 10px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .titleimg {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .titleimg img {
+        width: 100px;
+      }
+
+      .titleimg p {
+        font-family: "Lato", sans-serif;
+        font-weight: 500;
+        font-style: normal;
+      }
+
+      .btns {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+      }
+
+      .btns i {
+        font-size: 20px;
+        cursor: pointer;
+      }
+
+      .pop-up {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 10;
+      }
+
+      @media only screen and (max-width: 800px) {
+        .row {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          width: 98%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="hole">
+        <h1>Add Book Here</h1>
+        <form id="AddForm">
+          <label for="title">Title</label>
+          <input
+            type="text"
+            name="title"
+            id="title"
+            placeholder="Enter your book title"
+          />
+          <label for="description">Description</label>
+          <input
+            type="text"
+            name="description"
+            id="description"
+            placeholder="Enter your book description"
+          />
+          <label for="bookCover">Book cover</label>
+          <input
+            type="file"
+            name="bookCover"
+            id="bookCover"
+            accept=".jpeg, .jpg, .png, .webp"
+          />
+          <label for="bookFile">Book file</label>
+          <input
+            type="file"
+            name="bookFile"
+            id="bookFile"
+            accept=".epub, .mobi, .pdf"
+          />
+          <div class="btn">
+            <button type="reset">Clear</button>
+            <button type="submit">Add</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div id="bookContainer"></div>
+    <div class="pop-up">
+      <form id="UpdateForm">
+        <label for="title">Title</label>
+        <input
+          type="text"
+          name="title"
+          id="title"
+          placeholder="Enter your book title"
+        />
+        <label for="description">Description</label>
+        <input
+          type="text"
+          name="description"
+          id="description"
+          placeholder="Enter your book description"
+        />
+        <label for="bookCover">Book cover</label>
+        <input
+          type="file"
+          name="bookCover"
+          id="bookCover"
+          accept=".jpeg, .jpg, .png, .webp"
+        />
+        <label for="bookFile">Book file</label>
+        <input
+          type="file"
+          name="bookFile"
+          id="bookFile"
+          accept=".epub, .mobi, .pdf"
+        />
+        <div class="btn">
+          <button type="reset">Clear</button>
+          <button type="submit">Edit</button>
+        </div>
+      </form>
+    </div>
+    <script>
+      let UpdateId;
+      const bookContainer = document.getElementById("bookContainer");
+      const AddForm = document.getElementById("AddForm");
+      const update = document.getElementById("UpdateForm");
+      const popUp = document.getElementsByClassName("pop-up")[0];
+
+      const getBooks = async () => {
+        let content = "";
+        try {
+          const response = await fetch("http://localhost:4000/book/books");
+          if (!response.ok) {
+            throw new Error("Response status: " + response.status);
+          }
+          const books = await response.json();
+          books.forEach((element) => {
+            content += `
+            <div class="row">
+              <div class="titleimg">
+                <img src='${element.bookCover}' alt='${element.title}' />
+                <p>${element.title}</p>
+              </div>
+              <div class="btns">
+               
+                <i class="ri-edit-box-line" onclick="edit('${element._id}')"></i>
+                <i class="ri-delete-bin-6-line" onclick="deleteBook('${element._id}')"></i>
+              </div>
+            </div>`;
+          });
+          bookContainer.innerHTML = content;
+        } catch (error) {
+          console.error(error.message);
+        }
+      };
+      getBooks();
+
+      AddForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const formData = new FormData(AddForm);
+
+        try {
+          const response = await fetch("/book/add", {
+            method: "POST",
+            body: formData,
+          });
+
+          if (!response.ok) {
+            throw new Error("Failed to submit form");
+          }
+
+          const result = await response.json();
+          getBooks();
+          alert(result.message);
+          AddForm.reset();
+        } catch (error) {
+          console.error("Error:", error);
+        }
+      });
+
+      const edit = (id) => {
+        popUp.style.display = "flex";
+        UpdateId = id;
+      };
+
+      update.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const formData = new FormData(update);
+
+        try {
+          const response = await fetch(`/book/edit/${UpdateId}`, {
+            method: "PUT",
+            body: formData,
+          });
+
+          if (!response.ok) {
+            throw new Error("Failed to update book");
+          }
+
+          const result = await response.json();
+          getBooks();
+          alert(result.message);
+          update.reset();
+          popUp.style.display = "none";
+        } catch (error) {
+          console.error("Error:", error);
+        }
+      });
+
+      const deleteBook = async (id) => {
+        try {
+          const response = await fetch(`/book/remove/${id}`, {
+            method: "DELETE",
+          });
+
+          if (!response.ok) {
+            throw new Error("Failed to delete book");
+          }
+
+          const result = await response.json();
+          getBooks();
+          alert(result.message);
+        } catch (error) {
+          console.error("Error:", error);
+        }
+      };
+    </script>
+  </body>
+</html>
